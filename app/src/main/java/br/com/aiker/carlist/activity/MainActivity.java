@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewCarros;
     private CarroAdapter carroAdapter;
     private List<Carro> carros = new ArrayList<>();
+    private AdView mAdView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
         carroAdapter = new CarroAdapter(carros, this);
         recyclerViewCarros = findViewById(R.id.recycler_carro);
 
+
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 1 );
